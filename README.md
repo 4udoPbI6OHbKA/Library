@@ -1,2 +1,2 @@
-Проект ""drhyhfeuifh
+print("hello world")
 
