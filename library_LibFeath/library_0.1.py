@@ -3,6 +3,8 @@ print("Версия библиотеки 0.1")
 print("Здесь вы сможете ознакомится с нашим асортиментом книг")
 print("Для просмотра книг зарегестрируйтесь или войдите в учётную запись")
 
+import sqlite3
+
 def register_user(users_data_file):
     while True:
         surname = input("Введите фамилию: ")
@@ -76,6 +78,16 @@ def library():
     
 def booklist():
     print("Полный каталог литературы:")
+    conn = sqlite3.connect("your_database.db")
+    cursor = conn.cursor()
+
+    cursor.execute('SELECT * FROM Books')
+    books = cursor.fetchall()
+
+    for book in books:
+      print(book)
+
+    conn.close()
     
 
 
@@ -104,7 +116,15 @@ def main():
                 choice = input("Введите действие: ")
 
                 if choice == "blt":
+                    booklist()
                     
+                    
+
+                if choice == "rbk":
+                    pass
+                    
+                if choice == "bck":
+                    pass
                 
                 
             else:
