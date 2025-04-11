@@ -411,11 +411,8 @@ class LibraryApp:
             self.output_widget.config(state="disabled")
 
     def open_book(self):
-        #base_path = os.path.join(os.path.expanduser("~"), "Desktop", "LibFeath", "library") # УДАЛЕНО
-        #books_path = os.path.join(base_path, "books") # УДАЛЕНО
-
-        # Исправлено: Путь к папке с книгами теперь относительно исполняемого файла.
-        script_dir = os.path.dirname(os.path.abspath(__file__))  # Получаем директорию, где находится скрипт
+       
+        script_dir = os.path.dirname(os.path.abspath(__file__)) 
         books_path = os.path.join(script_dir, "library", "books")
 
         directory_path = books_path
