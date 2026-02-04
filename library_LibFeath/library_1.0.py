@@ -4,7 +4,6 @@ import sqlite3
 import subprocess
 import platform
 import os
-#from tkinter import simpledialog  #simpledialog больше не нужен
 
 def set_background(window, image_path):
     try:
@@ -33,7 +32,7 @@ def register_user(users_data_file, output_widget, surname_entry, name_entry, use
         return None, None, None
 
     if not (3 <= len(username) <= 16):
-        output_widget.insert(tk.END, "Имя пользователя должно содержать от 3 до 16 символов. Попробуйте снова.\n")
+        output_widget.insert(tk.END, "Имя пользователя(NickName) должно содержать от 3 до 16 символов. Попробуйте снова.\n")
         output_widget.see(tk.END)
         return None, None, None
 
@@ -52,7 +51,7 @@ def register_user(users_data_file, output_widget, surname_entry, name_entry, use
             for line in f:
                 stored_username, _, _, _ = line.strip().split(':')
                 if stored_username == username:
-                    output_widget.insert(tk.END, "Имя пользователя уже занято. Попробуйте другое.\n")
+                    output_widget.insert(tk.END, "Имя пользователя(NickName) уже занято. Попробуйте другое.\n")
                     output_widget.see(tk.END)
                     return None, None, None
             else:
@@ -90,7 +89,7 @@ def login_user(users_data_file, output_widget, username_entry, password_entry, c
                     output_widget.see(tk.END)
                     clear_callback()
                     return stored_username, surname, name
-        output_widget.insert(tk.END, "Неверное имя пользователя или пароль.\n")
+        output_widget.insert(tk.END, "Неверное Имя пользователя(NickName) или пароль.\n")
         output_widget.see(tk.END)
         return None, None, None
     except FileNotFoundError:
@@ -162,7 +161,7 @@ class LibraryApp:
         self.name_label = tk.Label(self.entry_frame, text="Имя:")
         self.name_entry = tk.Entry(self.entry_frame)
 
-        self.username_label = tk.Label(self.entry_frame, text="Имя пользователя:")
+        self.username_label = tk.Label(self.entry_frame, text="Имя пользователя(NickName):")
         self.username_entry = tk.Entry(self.entry_frame)
 
         self.password_label = tk.Label(self.entry_frame, text="Пароль:")
@@ -176,7 +175,7 @@ class LibraryApp:
 
 
         self.buttons_frame = tk.Frame(self.root)
-        self.buttons_frame.place(relx=0.1, rely=0.68, relwidth=0.8, relheight=0.05)
+        self.buttons_frame.place(relx=0.1, rely=0.71, relwidth=0.8, relheight=0.05)
 
         self.reg_button = create_button(self.buttons_frame, "Регистрация", self.show_registration_fields, 0, 0, width=20, height=2)
         self.login_button = create_button(self.buttons_frame, "Вход", self.show_login_fields, 0, 1, width=20, height=2)
